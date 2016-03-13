@@ -20,6 +20,7 @@ https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 .. code-block:: python
 
+    from poly1305_aes import poly1305
     p = Poly1305
     msg = 'Hello world'
     kr = p.get_key()
