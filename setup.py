@@ -40,7 +40,7 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
         'License :: Public Domain',
     ],
-    install_requires=['cffi>=1.0.0'],
+    install_requires=['cffi>=1.0.0', 'six>=1.9.0'],
     packages=find_packages(),
     zip_safe=False,
     ext_modules=[
