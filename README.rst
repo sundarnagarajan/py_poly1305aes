@@ -3,15 +3,15 @@ poly1305_aes
 ==================
 Python extension module wrapping poly1305aes by Daniel Bernstein
 
-This module is a simple wrapper around the poly1305aes HMAC algorithm
-by Daniel J. Bernstein (https://cr.yp.to/mac.html).
+This module is a simple wrapper around the [poly1305aes HMAC algorithm
+by Daniel J. Bernstein](https://cr.yp.to/mac.html).
 
 LICENSE:
 Following D.J. Bernstein's code license, this code is also released into the 
 public domain. See LICENSE file.
 
 The 'c' directory contains the unmodified source code for poly1305aes from
-https://cr.yp.to/mac/poly1305aes-20050218.tar.gz
+[cr.yp.to](https://cr.yp.to/mac/poly1305aes-20050218.tar.gz)
 
 **EXAMPLES:**
 
