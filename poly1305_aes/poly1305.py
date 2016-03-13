@@ -1,6 +1,6 @@
 import os
 from utils import toBytes
-from cffi_utils.wrapper import get_lib_ffi_shared
+from cffi_utils.sowrapper import get_lib_ffi_shared
 from pkg_resources import resource_filename
 
 
