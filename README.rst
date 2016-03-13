@@ -89,6 +89,7 @@ python setup.py install
 - cffi >= 1.0.0
 - six
 - Python.h (libpython-dev on Debian-like systems)
+- gcc (build-essential on Debian-like systems)
 
 TODO:
 =====
