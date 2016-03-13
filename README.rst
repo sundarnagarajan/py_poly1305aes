@@ -87,6 +87,7 @@ python setup.py install
 - Python
   Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
 - cffi >= 1.0.0
+- six
 - Python.h (libpython-dev on Debian-like systems)
 
 TODO:
