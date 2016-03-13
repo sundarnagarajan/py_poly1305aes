@@ -1,6 +1,6 @@
-# poly1305_aes
-
--------------
+===============
+poly1305_aes
+===============
 
 Python extension module wrapping poly1305aes by Daniel Bernstein
 
