@@ -87,7 +87,9 @@ python setup.py install
 - Python
   Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
 - cffi >= 1.0.0
+- six
 - Python.h (libpython-dev on Debian-like systems)
+- gcc (build-essential on Debian-like systems)
 
 TODO:
 =====
@@ -104,4 +106,5 @@ My code only supports generic x86. To support the additional platforms will requ
 - Detect CPU type accurately
 - Change c_src_files in setup.py based on CPU type
 - Change c_hdr in poly1305_aes.poly1305.py based on CPU type
+- Change get_key(), authenticate() and verify() in poly1305_aes.poly1305.py to call different functions in shared library based on CPU type
 - Test on the different CPUs (I only have access to x86!)
