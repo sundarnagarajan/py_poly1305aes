@@ -1,36 +1,22 @@
 import os
 from utils import toBytes
-from cffi_utils.wrapper import get_lib_ffi, get_lib_ffi_shared
-from c_source import c_hdr
+from cffi_utils.wrapper import get_lib_ffi_shared
 
-
-USE_SHARED_LIB = True
-
-
-if USE_SHARED_LIB:
-    libpath = os.path.join(
-        os.path.dirname(__file__), './libpoly1305aes.so')
-    (ffi, lib) = get_lib_ffi_shared(libpath=libpath, c_hdr=c_hdr)
-else:
-    from c_source import c_src
-    (ffi, lib) = get_lib_ffi(
-        module_name='poly1305_aes', c_hdr=c_hdr, c_src=c_src)
-
-
+c_hdr = '''
+extern void poly1305aes_53_clamp(unsigned char kr[32]);
+extern void poly1305aes_53_authenticate(unsigned char out[16],
+  const unsigned char kr[32],
+  const unsigned char n[16],
+  const unsigned char m[],unsigned int l);
+extern int poly1305aes_53_verify(const unsigned char a[16],
+  const unsigned char kr[32],
+  const unsigned char n[16],
+  const unsigned char m[],unsigned int l);
 '''
-Conventions:
-    - Provide methods for allocation of all C pointers and arrays
-        use ffi.new()
-    - Return FFI-allocated C pointers and arrays as BUFFERS
-        that can be read and written by python (if required)
-        use ffi.get_buffer
-    - If FFI-allocated C arrays are NOT going to be passed into
-        C-routines, convert them to BYTEs using ffi.get_bytes()
-        Note: bytes cannot be converted back into cdata using
-        ffi.get_cdata()
-    - Automatically convert buffers that were originally allocated
-        using ffi.new() using ffi.get_cdata()
-'''
+
+libpath = os.path.join(
+    os.path.dirname(__file__), './libpoly1305aes.so')
+(ffi, lib) = get_lib_ffi_shared(libpath=libpath, c_hdr=c_hdr)
 
 
 class Poly1305(object):
