@@ -8,8 +8,10 @@ This module is a simple wrapper around the poly1305aes HMAC algorithm
 by Daniel J. Bernstein (http://cr.yp.to/mac.html)
 
 LICENSE:
+--------
 Following D.J. Bernstein's code license, this code is also released into the 
 public domain. See LICENSE file.
+
 
 The 'c' directory contains the unmodified source code for poly1305aes from
 https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
