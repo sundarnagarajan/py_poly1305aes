@@ -17,10 +17,6 @@ extern int poly1305aes_53_verify(const unsigned char a[16],
 '''
 
 
-'''
-libpath = os.path.join(
-    os.path.dirname(__file__), './libpoly1305aes.so')
-'''
 libpath = resource_filename('poly1305_aes', 'libpoly1305aes.so')
 (ffi, lib) = get_lib_ffi_shared(libpath=libpath, c_hdr=c_hdr)
 
