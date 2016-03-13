@@ -89,3 +89,19 @@ python setup.py install
 - cffi >= 1.0.0
 - Python.h (libpython-dev on Debian-like systems)
 
+TODO:
+=====
+Dan Bernsteins code contains optimizations for:
+
+- x86 (Intel)
+- x86 (Pentium Pro)
+- x86 (Athlon)
+- UltraSparc II and III
+- PowerPC, PPC64
+
+My code only supports generic x86. To support the additional platforms will require:
+
+- Detect CPU type accurately
+- Change c_src_files in setup.py based on CPU type
+- Change c_hdr in poly1305_aes.poly1305.py based on CPU type
+- Test on the different CPUs (I only have access to x86!)
