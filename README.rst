@@ -16,7 +16,7 @@ https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 **EXAMPLES:**
 
-.. code-block::
+.. code-block:: python
 
     p = Poly1305
     msg = 'Hello world'
