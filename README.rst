@@ -15,7 +15,7 @@ https://cr.yp.to/mac/poly1305aes-20050218.tar.gz
 
 **EXAMPLES:**
 
--- code-block:: python
+--code-block:: python
     p = Poly1305
     msg = 'Hello world'
     kr = p.get_key()
@@ -34,13 +34,16 @@ https://cr.yp.to/mac/poly1305aes-20050218.tar.gz
 
 
 **INSTALLATION:**
+
 Using pip:
-    pip install 'git+<github_http_url.git>'
+
+pip install 'git+<github_http_url.git>'
 
 Using setup.py:
-    python setup.py install
+python setup.py install
 
 **BUILD / INSTALL REQUIREMENTS:**
+
 *GNU/Linux:*
 - Python
   Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
