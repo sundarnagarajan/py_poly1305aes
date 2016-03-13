@@ -1,6 +1,9 @@
 import sys
 import os
-from setuptools import setup, find_packages, Extension
+from setuptools import (
+    setup,
+    find_packages, Extension,
+)
 
 
 os.chdir(os.path.dirname(sys.argv[0]) or ".")
