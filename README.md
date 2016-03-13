@@ -1,6 +1,7 @@
 -------------
 poly1305_aes
 -------------
+
 Python extension module wrapping poly1305aes by Daniel Bernstein
 
 This module is a simple wrapper around the poly1305aes HMAC algorithm
