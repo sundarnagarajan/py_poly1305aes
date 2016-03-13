@@ -1,6 +1,8 @@
 import os
 from utils import toBytes
 from cffi_utils.wrapper import get_lib_ffi_shared
+from pkg_resources import resource_filename
+
 
 c_hdr = '''
 extern void poly1305aes_53_clamp(unsigned char kr[32]);
@@ -14,8 +16,12 @@ extern int poly1305aes_53_verify(const unsigned char a[16],
   const unsigned char m[],unsigned int l);
 '''
 
+
+'''
 libpath = os.path.join(
     os.path.dirname(__file__), './libpoly1305aes.so')
+'''
+libpath = resource_filename('poly1305_aes', 'libpoly1305aes.so')
 (ffi, lib) = get_lib_ffi_shared(libpath=libpath, c_hdr=c_hdr)
 
 
