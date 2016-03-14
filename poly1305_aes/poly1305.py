@@ -1,3 +1,5 @@
+import six
+import sys
 import os
 from utils import toBytes
 from cffi_utils.sowrapper import get_lib_ffi_shared
@@ -17,7 +19,18 @@ extern int poly1305aes_53_verify(const unsigned char a[16],
 '''
 
 
-libpath = resource_filename('poly1305_aes', 'libpoly1305aes.so')
+# The lib name gets clobbered by FFI in Python3 and pypy
+lib_base = 'libpoly1305aes'
+if six.PY2 and sys.subversion[0].lower() == 'pypy':
+    res_file = '%s.%s-26-%s.so' % (
+        lib_base, sys.subversion[0].lower(), sys._multiarch,
+    )
+elif six.PY2:
+    res_file = lib_base + '.so'
+elif six.PY3:
+    res_file = lib_base + sys.implementation.cache_tag + 'm.so'
+
+libpath = resource_filename('poly1305_aes', res_file)
 (ffi, lib) = get_lib_ffi_shared(libpath=libpath, c_hdr=c_hdr)
 
 

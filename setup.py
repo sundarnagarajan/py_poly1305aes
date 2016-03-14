@@ -1,8 +1,8 @@
 import sys
 import os
 from setuptools import (
-    setup,
-    find_packages, Extension,
+    setup, Extension,
+    find_packages
 )
 
 
@@ -26,6 +26,11 @@ c_src_files = [
 ]
 libpath = os.path.join(module_name, libname)
 c_src_list = [os.path.join(c_dir, x) for x in c_src_files]
+extension = Extension(
+    name=libpath,
+    sources=c_src_list,
+    include_dirs=[c_dir],
+)
 
 
 setup(
@@ -46,10 +51,5 @@ setup(
     install_requires=['cffi>=1.0.0', 'six>=1.9.0'],
     packages=find_packages(),
     zip_safe=False,
-    ext_modules=[
-        Extension(
-            libpath,
-            c_src_list,
-            include_dirs=[c_dir]
-        )],
+    ext_modules=[extension],
 )
