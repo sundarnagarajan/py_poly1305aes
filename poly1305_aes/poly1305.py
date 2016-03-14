@@ -28,7 +28,7 @@ if six.PY2 and sys.subversion[0].lower() == 'pypy':
 elif six.PY2:
     res_file = lib_base + '.so'
 elif six.PY3:
-    res_file = lib_base + sys.implementation.cache_tag + 'm.so'
+    res_file = lib_base + '.' + sys.implementation.cache_tag + 'm.so'
 
 libpath = resource_filename('poly1305_aes', res_file)
 (ffi, lib) = get_lib_ffi_shared(libpath=libpath, c_hdr=c_hdr)
