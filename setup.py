@@ -19,8 +19,11 @@ license = 'License :: OSI Approved :: MIT License'
 
 long_description = open('README.rst').read()
 url = 'https://github.com/sundarnagarajan/py_poly1305aes.git'
+download_url = 'https://github.com/sundarnagarajan/py_poly1305aes.git'
 author = 'Sundar Nagarajan'
 author_email = ''
+maintainer = author
+maintainer_email = author_email
 install_requires = [
     'cffi>=1.0.0',
     'six>=1.9.0'
