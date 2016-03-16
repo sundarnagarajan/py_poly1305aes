@@ -54,21 +54,22 @@ https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 .. code-block:: python
 
-    from poly1305_aes import poly1305
-    p = Poly1305
+    from poly1305_aes.poly1305 import (
+        get_key, authenticate, verify
+    )
     msg = 'Hello world'
-    kr = p.get_key()
-    auth = p.authenticate(kr, msg)
+    kr = get_key()
+    auth = authenticate(kr, msg)
 
-    bad_kr = p.get_key()
-    bad_auth = p.authenticate(kr, msg + '1')
+    bad_kr = get_key()
+    bad_auth = authenticate(kr, msg + '1')
     bad_msg = msg + '1'
 
     print('Good: %s\nBad auth: %s\nBad kr: %s\nBad msg: %s' % (
-        str(p.verify(auth, kr, msg)),
-        str(p.verify(bad_auth, kr, msg)),
-        str(p.verify(auth, bad_kr, msg)),
-        str(p.verify(auth, kr, bad_msg))
+        str(verify(auth, kr, msg)),
+        str(verify(bad_auth, kr, msg)),
+        str(verify(auth, bad_kr, msg)),
+        str(verify(auth, kr, bad_msg))
     ))
 
 
