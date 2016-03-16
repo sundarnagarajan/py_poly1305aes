@@ -1,0 +1,12 @@
+PUBLIC DOMAIN
+=============
+
+The code in this repository is placed into the public domain.
+
+Public domain poly1305aes by Daniel J. Bernstein
+------------------------------------------------
+The 'c' directory contains the unmodified source code for poly1305aes from
+https://cr.yp.to/mac/poly1305aes-20050218.tar.gz which hal already been placed
+into the public domain by the author, Daniel J. Bernstein - see:
+https://cr.yp.to/mac.html
+
