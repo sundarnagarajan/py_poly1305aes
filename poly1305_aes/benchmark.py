@@ -1,19 +1,4 @@
 #!/usr/bin/env/python
-'''
-    authenticate(kr, msg, random_fn=None)
-        kr-->bytes: Secure key - returned by get_key()
-        msg-->str or bytes: Message to be authenticated
-        random_fn-->callable: takes one int param: number of random bytes
-                    Preferably leave unset; os.urandom() will be used
-        Returns-->bytes: auth + nonce
-
-    get_key(random_fn=None)
-        random_fn-->callable: takes one int param: number of random bytes
-                    Preferably leave unset; os.urandom() will be used
-        Returns-->bytes: Secure key
-
-    verify(auth_nonce, kr, msg)
-'''
 import sys
 import os
 import time
