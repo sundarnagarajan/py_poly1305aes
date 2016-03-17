@@ -1,5 +1,5 @@
 import os
-from utils2to3 import toBytes
+from cffi_utils.utils2to3 import toBytes
 from cffi_utils.sowrapper import get_lib_ffi_resource
 
 

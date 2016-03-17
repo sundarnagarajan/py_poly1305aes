@@ -11,8 +11,8 @@ os.chdir(os.path.dirname(sys.argv[0]) or ".")
 PACKAGE DATA
 ==============================================================================
 '''
-toplevel = 'poly1305_aes'
-version = '0.1'
+name = 'poly1305_aes'
+version = '0.13.5'
 packages = find_packages()
 description = 'Python wrapper for Poly1305aes HMAC'
 license = 'License :: OSI Approved :: MIT License'
@@ -24,10 +24,8 @@ author = 'Sundar Nagarajan'
 author_email = ''
 maintainer = author
 maintainer_email = author_email
-install_requires = [
-    'cffi>=1.0.0',
-    'six>=1.9.0'
-],
+install_requires = ['cffi_utils']
+requires = install_requires
 maintainer = author
 maintainer_email = author_email
 classifiers = [
@@ -57,8 +55,8 @@ c_src_files = [
     'poly1305aes_53_isequal.c',
     'poly1305aes_53_verify.c',
 ]
-libpath = os.path.join(toplevel, libname)
-c_src_list = [os.path.join(toplevel, c_dir, x) for x in c_src_files]
+libpath = os.path.join(name, libname)
+c_src_list = [os.path.join(name, c_dir, x) for x in c_src_files]
 ext_modules = [
     Extension(
         name=libpath,
@@ -82,7 +80,7 @@ data_dirs = [
 
 '''
 ==============================================================================
-ADDITIONAL keyword args to setup()
+ADDITIONAL keyword args to setup() - should not require, normally
 ==============================================================================
 '''
 ADDL_KWARGS = dict(
@@ -96,16 +94,16 @@ ADDL_KWARGS = dict(
 '''
 
 
-def get_dirtree(toplevel, dirlist=[]):
+def get_dirtree(topdir, dirlist=[]):
     '''
-    toplevel-->str: must be name of a dir under current working dir
-    dirlist-->list of str: must all be names of dirs under toplevel
+    topdir-->str: must be name of a dir under current working dir
+    dirlist-->list of str: must all be names of dirs under topdir
     '''
     ret = []
     curdir = os.getcwd()
-    if not os.path.isdir(toplevel):
+    if not os.path.isdir(topdir):
         return ret
-    os.chdir(toplevel)
+    os.chdir(topdir)
     try:
         for dirname in dirlist:
             if not os.path.isdir(dirname):
@@ -119,43 +117,35 @@ def get_dirtree(toplevel, dirlist=[]):
     finally:
         os.chdir(curdir)
 
+# Make some keywords MANDATORY
+for k in [
+    'name', 'version', 'description', 'license',
+]:
+    if k not in locals():
+        raise Exception('Missing mandatory keyword: ' + k)
 
-# Required keywords
-kwdict = dict(
-    name=toplevel,
-    version=version,
-    packages=packages,
-    description=description,
-    license=license,
-)
-
-# Optional keywords
-kwdict.update(dict(
-    # requires=globals().get('requires,', []),
-    install_requires=globals().get('install_requires,', []),
-    long_description=globals().get('long_description', ''),
-    url=globals().get('url', ''),
-    download_url=globals().get('download_url', ''),
-    author=globals().get('author', ''),
-    author_email=globals().get('author_email', ''),
-    maintainer=globals().get('maintainer', ''),
-    maintainer_email=globals().get('maintainer_email', ''),
-    classifiers=globals().get('classifiers', []),
-    keywords=globals().get('keywords', []),
-    zip_safe=globals().get('zip_safe', False),
-))
-kwdict.update(ADDL_KWARGS)
-
-# More optional keywords, but which are added conditionally
-ext_modules = globals().get('ext_modules', [])
-if ext_modules:
-    kwdict['ext_modules'] = ext_modules
-
-dirlist = globals().get('data_dirs', None)
+# keywords that are computed from variables
+dirlist = locals().get('data_dirs', None)
 if isinstance(dirlist, list):
-    kwdict['package_dir'] = {toplevel: toplevel}
-    kwdict['package_data'] = {toplevel:
-                              get_dirtree(toplevel, dirlist)}
+    package_dir = {name: name}
+    package_data = {name: get_dirtree(topdir=name, dirlist=dirlist)}
+
+known_keywords = [
+    'name', 'version', 'packages', 'description', 'license',
+    'install_requires', 'requires', 'setup_requires',
+    'ext_modules', 'package_dir', 'package_data',
+    'zip_safe', 'classifiers', 'keywords',
+    'long_description', 'url', 'download_url',
+    'author', 'author_email', 'maintainer', 'maintainer_email',
+]
+
+kwdict = {}
+for k in known_keywords:
+    if k in locals():
+        kwdict[k] = locals()[k]
+
+# Additional keywords specified by user - shouldn't be required, normally
+kwdict.update(ADDL_KWARGS)
 
 
 setup(**kwdict)
