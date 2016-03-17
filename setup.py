@@ -12,7 +12,7 @@ PACKAGE DATA
 ==============================================================================
 '''
 name = 'poly1305_aes'
-version = '0.13.6'
+version = '0.13.7'
 packages = find_packages()
 description = 'Python wrapper for Poly1305aes HMAC'
 license = 'License :: OSI Approved :: MIT License'
