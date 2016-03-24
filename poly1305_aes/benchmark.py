@@ -2,7 +2,7 @@
 import sys
 import os
 import time
-from poly1305_aes.poly1305 import get_key, authenticate, verify
+from . import get_key, authenticate, verify
 
 
 def time_auth(d, msg_len=64):
