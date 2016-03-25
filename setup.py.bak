@@ -12,17 +12,14 @@ PACKAGE DATA
 ==============================================================================
 '''
 name = 'poly1305_aes'
-version = '0.13.29'   # oldver: '0.13.28'
+version = open('ver.txt', 'r').read().splitlines()[0]
 url = 'https://github.com/sundarnagarajan/py_poly1305aes.git'
 download_url = '%s/tree/%s' % (url, version)
 packages = find_packages()
 description = 'Python wrapper for Poly1305aes HMAC'
 license = 'License :: OSI Approved :: MIT License'
 
-try:
-    long_description = open('README_generated.rst').read()
-except:
-    long_description = description
+long_description = open('README.rst').read()
 author = 'Sundar Nagarajan'
 author_email = ''
 maintainer = author

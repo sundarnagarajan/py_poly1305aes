@@ -1,13 +1,11 @@
-poly1305_aes
-=============
+# poly1305_aes
 
 Python extension module wrapping poly1305aes by Daniel Bernstein
 
 This module is a simple wrapper around the poly1305aes HMAC algorithm by
 Daniel J. Bernstein (http://cr.yp.to/mac.html)
 
-What is a HMAC (Hash-based Message Authentication Code)?
---------------------------------------------------------
+## What is a HMAC (Hash-based Message Authentication Code)?
 
 From wikipedia
 (https://en.wikipedia.org/wiki/Hash-based_message_authentication_code):
@@ -24,8 +22,7 @@ the HMAC depends upon the cryptographic strength of the underlying hash
 function, the size of its hash output, and on the size and quality of
 the key.
 
-What is poly1305?
------------------
+## What is poly1305?
 
 From http://cr.yp.to/mac.html:
 
@@ -82,8 +79,7 @@ Poly1305-AES has several useful features:
    slower and has a weaker security guarantee. Both HMAC-MD5 and
    CBC-MAC-AES are breakable within 2\\\\\\\\^64 messages.
 
-LICENSE:
---------
+# LICENSE:
 
 Following D.J. Bernstein's code license, this code is also released into
 the public domain. See LICENSE file.
@@ -91,7 +87,7 @@ the public domain. See LICENSE file.
 The 'c' directory contains the unmodified source code for poly1305aes
 from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
-**EXAMPLES:**
+# EXAMPLES:
 
 .. code:: python
 
@@ -125,7 +121,7 @@ To run a simple benchmark:
 
     python -m poly1305_aes.benchmark
 
-**INSTALLATION:**
+# INSTALLATION:
 
 Using pip:
 
@@ -133,14 +129,13 @@ pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
 
 Using setup.py: python setup.py install
 
-**BUILD / INSTALL REQUIREMENTS:**
+# BUILD / INSTALL REQUIREMENTS:
 
 *GNU/Linux:* - Python Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
 -cffi >= 1.0.0 - six - Python.h (libpython-dev on Debian-like systems)
 -gcc (build-essential on Debian-like systems)
 
-TODO:
-~~~~~
+# TODO:
 
 Dan Bernsteins code contains optimizations for:
 
