@@ -40,8 +40,8 @@ each authenticator.
 Poly1305-AES has several useful features:
 
 -  Guaranteed security if AES is secure. There's a theorem guaranteeing
-   that the security gap is extremely small (n/2\\\\^(102) per forgery
-   attempt for 16n-byte messages) even for long-term keys (2\\\\^64
+   that the security gap is extremely small (n/2\\\\\\^(102) per forgery
+   attempt for 16n-byte messages) even for long-term keys (2\\\\\\^64
    messages). The only way for an attacker to break Poly1305-AES is to
    break AES.
 -  Cipher replaceability. If anything does go wrong with AES, users can
@@ -80,7 +80,7 @@ Poly1305-AES has several useful features:
    less secure than Poly1305-AES. Specifically, HMAC-MD5 is slower and
    doesn't have a comparable security guarantee; CBC-MAC-AES is much
    slower and has a weaker security guarantee. Both HMAC-MD5 and
-   CBC-MAC-AES are breakable within 2\\\\^64 messages.
+   CBC-MAC-AES are breakable within 2\\\\\\^64 messages.
 
 LICENSE:
 --------
