@@ -37,9 +37,9 @@ each authenticator.
 Poly1305-AES has several useful features:
 
 -  Guaranteed security if AES is secure. There's a theorem guaranteeing
-   that the security gap is extremely small (n/2\\\\\\\\^(102) per
+   that the security gap is extremely small (n/2^(102) per
    forgery attempt for 16n-byte messages) even for long-term keys
-   (2\\\\\\\\^64 messages). The only way for an attacker to break
+   (2^64 messages). The only way for an attacker to break
    Poly1305-AES is to break AES.
 -  Cipher replaceability. If anything does go wrong with AES, users can
    switch from Poly1305-AES to Poly1305-AnotherFunction, with an
@@ -77,7 +77,7 @@ Poly1305-AES has several useful features:
    less secure than Poly1305-AES. Specifically, HMAC-MD5 is slower and
    doesn't have a comparable security guarantee; CBC-MAC-AES is much
    slower and has a weaker security guarantee. Both HMAC-MD5 and
-   CBC-MAC-AES are breakable within 2\\\\\\\\^64 messages.
+   CBC-MAC-AES are breakable within 2^64 messages.
 
 # LICENSE:
 
@@ -89,7 +89,6 @@ from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 # EXAMPLES:
 
-.. code:: python
 
     from poly1305_aes import (
         get_key, authenticate, verify
@@ -111,13 +110,11 @@ from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 Alternately, run the test script that is shipped: 
 
-.. code-block:: python
 
     python -m poly1305_aes.test
 
 To run a simple benchmark:
 
-.. code:: python
 
     python -m poly1305_aes.benchmark
 
@@ -131,9 +128,11 @@ Using setup.py: python setup.py install
 
 # BUILD / INSTALL REQUIREMENTS:
 
-*GNU/Linux:* - Python Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
--cffi >= 1.0.0 - six - Python.h (libpython-dev on Debian-like systems)
--gcc (build-essential on Debian-like systems)
+*GNU/Linux:* 
+- Python: Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
+- cffi >= 1.0.0 
+- six - Python.h (libpython-dev on Debian-like systems)
+- gcc (build-essential on Debian-like systems)
 
 # TODO:
 
