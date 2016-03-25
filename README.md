@@ -89,7 +89,7 @@ from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 # EXAMPLES:
 
-
+~~~~ {.sourceCode .python}
     from poly1305_aes import (
         get_key, authenticate, verify
     )
@@ -107,14 +107,13 @@ from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
         str(verify(auth, bad_kr, msg)),
         str(verify(auth, kr, bad_msg))
     ))
+~~~~
 
 Alternately, run the test script that is shipped: 
-
 
     python -m poly1305_aes.test
 
 To run a simple benchmark:
-
 
     python -m poly1305_aes.benchmark
 
@@ -122,9 +121,11 @@ To run a simple benchmark:
 
 Using pip:
 
-pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
+   pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
 
-Using setup.py: python setup.py install
+Using setup.py: 
+
+   python setup.py install
 
 # BUILD / INSTALL REQUIREMENTS:
 
