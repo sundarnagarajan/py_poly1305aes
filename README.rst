@@ -1,4 +1,4 @@
-poly1305\_aes
+poly1305_aes
 =============
 
 Python extension module wrapping poly1305aes by Daniel Bernstein
@@ -117,7 +117,7 @@ Alternately, run the test script that is shipped:
 
 .. code-block:: python
 
-    python -m poly1305\_aes.test
+    python -m poly1305_aes.test
 
 To run a simple benchmark:
 
@@ -129,7 +129,7 @@ To run a simple benchmark:
 
 Using pip:
 
-pip install 'git+\\'
+pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
 
 Using setup.py: python setup.py install
 
@@ -154,10 +154,10 @@ My code only supports generic x86. To support the additional platforms
 will require:
 
 -  Detect CPU type accurately
--  Change c\_src\_files in setup.py based on CPU type
--  Change c\_hdr in poly1305\_aes.poly1305.py based on CPU type
--  Change get\_key(), authenticate() and verify() in
-   poly1305\_aes.poly1305.py to call different functions in shared
+-  Change c_src_files in setup.py based on CPU type
+-  Change c_hdr in poly1305_aes.poly1305.py based on CPU type
+-  Change get_key(), authenticate() and verify() in
+   poly1305_aes.__init__.py to call different functions in shared
    library based on CPU type
 -  Test on the different CPUs (I only have access to x86!)
 
