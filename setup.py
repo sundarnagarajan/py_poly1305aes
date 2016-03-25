@@ -12,7 +12,7 @@ PACKAGE DATA
 ==============================================================================
 '''
 name = 'poly1305_aes'
-version = open('ver.txt', 'r').read().splitlines()[0]
+version = '0.13.22'   # oldver: '0.13.23'
 url = 'https://github.com/sundarnagarajan/py_poly1305aes.git'
 download_url = '%s/tree/%s' % (url, version)
 packages = find_packages()
@@ -148,4 +148,5 @@ for k in known_keywords:
 kwdict.update(ADDL_KWARGS)
 
 
-setup(**kwdict)
+if len(sys.argv) > 1:
+    setup(**kwdict)
