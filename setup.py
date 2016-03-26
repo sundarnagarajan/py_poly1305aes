@@ -12,17 +12,13 @@ PACKAGE DATA
 ==============================================================================
 '''
 name = 'poly1305_aes'
-version = '0.13.32'   # oldver: '0.13.31'
+version = '0.13.33'   # oldver: '0.13.32'
 url = 'https://github.com/sundarnagarajan/py_poly1305aes.git'
 download_url = '%s/tree/%s' % (url, version)
 packages = find_packages()
 description = 'Python wrapper for Poly1305aes HMAC'
 license = 'License :: OSI Approved :: MIT License'
 
-try:
-    long_description = open('README.rst').read()
-except:
-    long_description = description
 author = 'Sundar Nagarajan'
 author_email = ''
 maintainer = author
@@ -97,6 +93,19 @@ ADDL_KWARGS = dict(
 '''
 
 
+def get_longdesc(default=''):
+    '''
+    Returns-->str
+    '''
+    files = ['README.rst', 'README.md', 'README.txt', 'README']
+    for f in files:
+        try:
+            return open(f, 'r').read()
+        except:
+            continue
+    return default
+
+
 def get_dirtree(topdir, dirlist=[]):
     '''
     topdir-->str: must be name of a dir under current working dir
@@ -132,6 +141,8 @@ dirlist = locals().get('data_dirs', None)
 if isinstance(dirlist, list):
     package_dir = {name: name}
     package_data = {name: get_dirtree(topdir=name, dirlist=dirlist)}
+
+long_description = get_longdesc(description)
 
 known_keywords = [
     'name', 'version', 'packages', 'description', 'license',
