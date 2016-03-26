@@ -12,7 +12,7 @@ PACKAGE DATA
 ==============================================================================
 '''
 name = 'poly1305_aes'
-version = '0.13.33'   # oldver: '0.13.32'
+version = '0.13.34'   # oldver: '0.13.33'
 url = 'https://github.com/sundarnagarajan/py_poly1305aes.git'
 download_url = '%s/tree/%s' % (url, version)
 packages = find_packages()

@@ -165,7 +165,7 @@ will require:
 -  Change c\_src\_files in setup.py based on CPU type
 -  Change c\_hdr in poly1305\_aes.poly1305.py based on CPU type
 -  Change get\_key(), authenticate() and verify() in
-    poly1305\_aes.\ **init**.py to call different functions in shared
+   poly1305\_aes.\ **init**.py to call different functions in shared
     library based on CPU type
 -  Test on the different CPUs (I only have access to x86!)
 
