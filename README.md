@@ -1,38 +1,17 @@
 # poly1305_aes
-
 Python extension module wrapping poly1305aes by Daniel Bernstein
 
-This module is a simple wrapper around the poly1305aes HMAC algorithm by
-Daniel J. Bernstein (http://cr.yp.to/mac.html)
+This module is a simple wrapper around the poly1305aes HMAC algorithm by Daniel J. Bernstein (http://cr.yp.to/mac.html)
 
 ## What is a HMAC (Hash-based Message Authentication Code)?
+From wikipedia (https://en.wikipedia.org/wiki/Hash-based_message_authentication_code):
 
-From wikipedia
-(https://en.wikipedia.org/wiki/Hash-based_message_authentication_code):
-
-In cryptography, a keyed-hash message authentication code (HMAC) is a
-specific construction for calculating a message authentication code
-(MAC) involving a cryptographic hash function in combination with a
-secret cryptographic key. As with any MAC, it may be used to
-simultaneously verify both the data integrity and the authentication of
-a message. Any cryptographic hash function, such as MD5 or SHA-1, may be
-used in the calculation of an HMAC; the resulting MAC algorithm is
-termed HMAC-MD5 or HMAC-SHA1 accordingly. The cryptographic strength of
-the HMAC depends upon the cryptographic strength of the underlying hash
-function, the size of its hash output, and on the size and quality of
-the key.
+In cryptography, a keyed-hash message authentication code (HMAC) is a specific construction for calculating a message authentication code (MAC) involving a cryptographic hash function in combination with a secret cryptographic key. As with any MAC, it may be used to simultaneously verify both the data integrity and the authentication of a message. Any cryptographic hash function, such as MD5 or SHA-1, may be used in the calculation of an HMAC; the resulting MAC algorithm is termed HMAC-MD5 or HMAC-SHA1 accordingly. The cryptographic strength of the HMAC depends upon the cryptographic strength of the underlying hash function, the size of its hash output, and on the size and quality of the key.
 
 ## What is poly1305?
-
 From http://cr.yp.to/mac.html:
 
-Poly1305-AES is a state-of-the-art secret-key message-authentication
-code suitable for a wide variety of applications. Poly1305-AES computes
-a 16-byte authenticator of a message of any length, using a 16-byte
-nonce (unique message number) and a 32-byte secret key. Attackers can't
-modify or forge messages if the message sender transmits an
-authenticator along with each message and the message receiver checks
-each authenticator.
+Poly1305-AES is a state-of-the-art secret-key message-authentication code suitable for a wide variety of applications. Poly1305-AES computes a 16-byte authenticator of a message of any length, using a 16-byte nonce (unique message number) and a 32-byte secret key. Attackers can't modify or forge messages if the message sender transmits an authenticator along with each message and the message receiver checks each authenticator.
 
 Poly1305-AES has several useful features:
 
@@ -80,15 +59,11 @@ Poly1305-AES has several useful features:
    CBC-MAC-AES are breakable within 2^64 messages.
 
 # LICENSE:
+Following D.J. Bernstein's code license, this code is also released into the public domain. See LICENSE file.
 
-Following D.J. Bernstein's code license, this code is also released into
-the public domain. See LICENSE file.
-
-The 'c' directory contains the unmodified source code for poly1305aes
-from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
+The 'c' directory contains the unmodified source code for poly1305aes from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 # EXAMPLES:
-
 ~~~~ {.sourceCode .python}
     from poly1305_aes import (
         get_key, authenticate, verify
@@ -118,7 +93,6 @@ To run a simple benchmark:
     python -m poly1305_aes.benchmark
 
 # INSTALLATION:
-
 Using pip:
 
    pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
@@ -128,7 +102,6 @@ Using setup.py:
    python setup.py install
 
 # BUILD / INSTALL REQUIREMENTS:
-
 *GNU/Linux:* 
 - Python: Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
 - cffi >= 1.0.0 
@@ -136,18 +109,14 @@ Using setup.py:
 - gcc (build-essential on Debian-like systems)
 
 # TODO:
-
 Dan Bernsteins code contains optimizations for:
-
 -  x86 (Intel)
 -  x86 (Pentium Pro)
 -  x86 (Athlon)
 -  UltraSparc II and III
 -  PowerPC, PPC64
 
-My code only supports generic x86. To support the additional platforms
-will require:
-
+My code only supports generic x86. To support the additional platforms will require:
 -  Detect CPU type accurately
 -  Change c_src_files in setup.py based on CPU type
 -  Change c_hdr in poly1305_aes.poly1305.py based on CPU type
@@ -155,4 +124,3 @@ will require:
    poly1305_aes.__init__.py to call different functions in shared
    library based on CPU type
 -  Test on the different CPUs (I only have access to x86!)
-

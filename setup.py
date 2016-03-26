@@ -20,7 +20,7 @@ description = 'Python wrapper for Poly1305aes HMAC'
 license = 'License :: OSI Approved :: MIT License'
 
 try:
-    long_description = open('README_generated.rst').read()
+    long_description = open('README.rst').read()
 except:
     long_description = description
 author = 'Sundar Nagarajan'
