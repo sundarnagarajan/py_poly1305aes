@@ -87,6 +87,5 @@ My code only supports generic x86. To support the additional platforms will requ
 -  Detect CPU type accurately
 -  Change c_src_files in setup.py based on CPU type
 -  Change c_hdr in poly1305_aes.poly1305.py based on CPU type
--  Change get_key(), authenticate() and verify() in poly1305_aes.\_\_init\_\_.py to call different functions in shared
-   library based on CPU type
+-  Change get_key(), authenticate() and verify() to call different functions in shared
 -  Test on the different CPUs (I only have access to x86!)
