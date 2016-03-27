@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Py poly1305aes by sundarnagarajan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Py poly1305aes</h1>
+      <h2 class="project-tagline">Python wrapper around poly1305aes by Daniel J. Bernstein</h2>
+      <a href="https://github.com/sundarnagarajan/py_poly1305aes" class="btn">View on GitHub</a>
+      <a href="https://github.com/sundarnagarajan/py_poly1305aes/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/sundarnagarajan/py_poly1305aes/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="poly1305_aes" class="anchor" href="#poly1305_aes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>poly1305_aes</h1>
+
+<p>Python extension module wrapping poly1305aes by Daniel Bernstein</p>
+
+<p>This module is a simple wrapper around the poly1305aes HMAC algorithm by Daniel J. Bernstein (<a href="http://cr.yp.to/mac.html">http://cr.yp.to/mac.html</a>)</p>
+
+<h2>
+<a id="what-is-a-hmac-hash-based-message-authentication-code" class="anchor" href="#what-is-a-hmac-hash-based-message-authentication-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is a HMAC (Hash-based Message Authentication Code)?</h2>
+
+<p>From wikipedia (<a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">https://en.wikipedia.org/wiki/Hash-based_message_authentication_code</a>):</p>
+
+<p>In cryptography, a keyed-hash message authentication code (HMAC) is a specific construction for calculating a message authentication code (MAC) involving a cryptographic hash function in combination with a secret cryptographic key. As with any MAC, it may be used to simultaneously verify both the data integrity and the authentication of a message. Any cryptographic hash function, such as MD5 or SHA-1, may be used in the calculation of an HMAC; the resulting MAC algorithm is termed HMAC-MD5 or HMAC-SHA1 accordingly. The cryptographic strength of the HMAC depends upon the cryptographic strength of the underlying hash function, the size of its hash output, and on the size and quality of the key.</p>
+
+<h2>
+<a id="what-is-poly1305" class="anchor" href="#what-is-poly1305" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is poly1305?</h2>
+
+<p>From <a href="http://cr.yp.to/mac.html">http://cr.yp.to/mac.html</a>:</p>
+
+<p>Poly1305-AES is a state-of-the-art secret-key message-authentication code suitable for a wide variety of applications. Poly1305-AES computes a 16-byte authenticator of a message of any length, using a 16-byte nonce (unique message number) and a 32-byte secret key. Attackers can't modify or forge messages if the message sender transmits an authenticator along with each message and the message receiver checks each authenticator.</p>
+
+<p>Poly1305-AES has several useful features:</p>
+
+<ul>
+<li> Guaranteed security if AES is secure. There's a theorem guaranteeing that the security gap is extremely small (n/2^(102) per forgery attempt for 16n-byte messages) even for long-term keys (2^64 messages). The only way for an attacker to break Poly1305-AES is to break AES.</li>
+<li> Cipher replaceability. If anything does go wrong with AES, users can switch from Poly1305-AES to Poly1305-AnotherFunction, with an identical security guarantee.</li>
+<li> Extremely high speed. My Poly1305-AES software takes just 3843 Athlon cycles, 5361 Pentium III cycles, 5464 Pentium 4 cycles, 4611 Pentium M cycles, 8464 PowerPC 7410 cycles, 5905 PowerPC RS64 IV cycles, 5118 UltraSPARC II cycles, or 5601 UltraSPARC III cycles to verify an authenticator on a 1024-byte message. Poly1305-AES offers consistent high speed, not just high speed for one favored CPU.</li>
+<li> Low per-message overhead. My Poly1305-AES software takes just 1232 Pentium 4 cycles, 1264 PowerPC 7410 cycles, or 1077 UltraSPARC III cycles to verify an authenticator on a 64-byte message. Poly1305-AES offers consistent high speed, not just high speed for long messages.  Most competing functions are designed for long messages and don't pay attention to short-packet performance.</li>
+<li> Key agility. Poly1305-AES can fit thousands of simultaneous keys into cache, and remains fast even when keys are out of cache. Poly1305-AES offers consistent high speed, not just high speed for single-key benchmarks. Almost all competing functions use a large table for each key; as the number of keys grows, those functions miss the cache and slow down dramatically.</li>
+<li> Parallelizability and incrementality. Poly1305-AES can take advantage of additional hardware to reduce the latency for long messages, and can be recomputed at low cost for a small modification of a long message.</li>
+<li> No intellectual-property claims. I am not aware of any patents or patent applications relevant to Poly1305-AES.</li>
+<li> Guaranteed security, cipher replaceability, and parallelizability are provided by the standard polynomial-evaluation Wegman-Carter-MAC framework. Within that framework, hash127-AES achieved extremely high speed at the expense of a large table for each key.</li>
+<li> The big advantage of Poly1305-AES is key agility: extremely high speed without any key expansion. Other standard MACs are slower and less secure than Poly1305-AES. Specifically, HMAC-MD5 is slower and doesn't have a comparable security guarantee; CBC-MAC-AES is much slower and has a weaker security guarantee. Both HMAC-MD5 and CBC-MAC-AES are breakable within 2^64 messages.</li>
+</ul>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LICENSE:</h1>
+
+<p>Following D.J. Bernstein's code license, this code is also released into the public domain. See LICENSE file.</p>
+
+<p>The 'c' directory contains the unmodified source code for poly1305aes from <a href="https://cr.yp.to/mac/poly1305aes-20050218.tar.gz">https://cr.yp.to/mac/poly1305aes-20050218.tar.gz</a>.</p>
+
+<h1>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>EXAMPLES:</h1>
+
+<pre lang="sourceCode"><code>    from poly1305_aes import (
+        get_key, authenticate, verify
+    )
+    msg = 'Hello world'
+    kr = get_key()
+    auth = authenticate(kr, msg)
+
+    bad_kr = get_key()
+    bad_auth = authenticate(kr, msg + '1')
+    bad_msg = msg + '1'
+
+    print('Good: %s\nBad auth: %s\nBad kr: %s\nBad msg: %s' % (
+        str(verify(auth, kr, msg)),
+        str(verify(bad_auth, kr, msg)),
+        str(verify(auth, bad_kr, msg)),
+        str(verify(auth, kr, bad_msg))
+    ))
+</code></pre>
+
+<p>Alternately, run the test script that is shipped: </p>
+
+<pre><code>python -m poly1305_aes.test
+</code></pre>
+
+<p>To run a simple benchmark:</p>
+
+<pre><code>python -m poly1305_aes.benchmark
+</code></pre>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>INSTALLATION:</h1>
+
+<p>Using pip:</p>
+
+<p>pip install 'git+<a href="https://github.com/sundarnagarajan/py_poly1305aes.git">https://github.com/sundarnagarajan/py_poly1305aes.git</a>'</p>
+
+<p>Using setup.py: </p>
+
+<p>python setup.py install</p>
+
+<h1>
+<a id="build--install-requirements" class="anchor" href="#build--install-requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>BUILD / INSTALL REQUIREMENTS:</h1>
+
+<p><em>GNU/Linux:</em> </p>
+
+<ul>
+<li>Python: Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)</li>
+<li>cffi &gt;= 1.0.0 </li>
+<li>six - Python.h (libpython-dev on Debian-like systems)</li>
+<li>gcc (build-essential on Debian-like systems)</li>
+</ul>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO:</h1>
+
+<p>Dan Bernsteins code contains optimizations for:</p>
+
+<ul>
+<li> x86 (Intel)</li>
+<li> x86 (Pentium Pro)</li>
+<li> x86 (Athlon)</li>
+<li> UltraSparc II and III</li>
+<li> PowerPC, PPC64</li>
+</ul>
+
+<p>My code only supports generic x86. To support the additional platforms will require:</p>
+
+<ul>
+<li> Detect CPU type accurately</li>
+<li> Change c_src_files in setup.py based on CPU type</li>
+<li> Change c_hdr in poly1305_aes.poly1305.py based on CPU type</li>
+<li> Change get_key(), authenticate() and verify() to call different functions in shared</li>
+<li> Test on the different CPUs (I only have access to x86!)</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/sundarnagarajan/py_poly1305aes">Py poly1305aes</a> is maintained by <a href="https://github.com/sundarnagarajan">sundarnagarajan</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
