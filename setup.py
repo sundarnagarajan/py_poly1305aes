@@ -1,6 +1,9 @@
 import sys
 import os
 from setuptools import setup, find_packages, Extension
+# Import setupext ONLY if you want custom triggers
+# If you only use prep_cmd, you only need to include setupext in the package
+# import setupext
 
 
 os.chdir(os.path.dirname(sys.argv[0]) or ".")
@@ -40,6 +43,11 @@ zip_safe = True
 '''
 ==============================================================================
 C EXTENSION DETAILS
+C source files are NOT under the python module, so that the
+C files are NOT installed with the python module
+
+Add c_dir to MANIFEST.in as graft
+Add any dir with prep scripts to MANIFEST.in as graft
 ==============================================================================
 '''
 c_dir = 'c/poly1305aes-20050218'
@@ -56,8 +64,11 @@ c_src_files = [
 ]
 libpath = os.path.join(name, libname)
 c_src_list = [os.path.join(c_dir, x) for x in c_src_files]
+# ext_modules should be a LIST of dict - each dict is a
+# set of keywords that define ONE extension. For a SINGLE extension
+# ext_modules should be a LIST with a SINGLE dict
 ext_modules = [
-    Extension(
+    dict(
         name=libpath,
         sources=c_src_list,
         include_dirs=[c_dir],
@@ -73,7 +84,6 @@ ADDITIONAL DATA FILES
 
 data_dirs = [
     'doc',
-    c_dir,
 ]
 
 
@@ -91,6 +101,15 @@ ADDL_KWARGS = dict(
            DO NOT CHANGE ANYTHING BELOW THIS
 ==============================================================================
 '''
+
+
+def prepare_c_source(cmd):
+    '''
+    cmd-->str: command with arguments
+    '''
+    import setupext
+    setupext.config['build_ext']['pre']['cmdlist'] = [cmd]
+    return setupext.get_cmdclass()
 
 
 def get_longdesc(default=''):
@@ -147,7 +166,7 @@ long_description = get_longdesc(description)
 known_keywords = [
     'name', 'version', 'packages', 'description', 'license',
     'install_requires', 'requires', 'setup_requires',
-    'ext_modules', 'package_dir', 'package_data',
+    'package_dir', 'package_data',
     'zip_safe', 'classifiers', 'keywords',
     'long_description', 'url', 'download_url',
     'author', 'author_email', 'maintainer', 'maintainer_email',
@@ -158,9 +177,15 @@ for k in known_keywords:
     if k in locals():
         kwdict[k] = locals()[k]
 
+if 'prep_cmd' in locals():
+    kwdict['cmdclass'] = prepare_c_source(locals()['prep_cmd'])
+
+# Do not compile ext_modules during build phase - wasteful
+if len(sys.argv) > 1 and sys.argv[1] != 'build':
+    if 'ext_modules' in locals():
+        kwdict['ext_modules'] = [Extension(**x) for x in
+                                 locals()['ext_modules']]
+
 # Additional keywords specified by user - shouldn't be required, normally
 kwdict.update(ADDL_KWARGS)
-
-
-if len(sys.argv) > 1:
-    setup(**kwdict)
+setup(**kwdict)
