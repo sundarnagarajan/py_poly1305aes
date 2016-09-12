@@ -31,7 +31,7 @@ Following D.J. Bernstein's code license, this code is also released into the pub
 The 'c' directory contains the unmodified source code for poly1305aes from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 
 # EXAMPLES:
-~~~~ {.sourceCode .python}
+
     from poly1305_aes import (
         get_key, authenticate, verify
     )
@@ -49,9 +49,8 @@ The 'c' directory contains the unmodified source code for poly1305aes from https
         str(verify(auth, bad_kr, msg)),
         str(verify(auth, kr, bad_msg))
     ))
-~~~~
 
-Alternately, run the test script that is shipped: 
+Alternately, run the test script that is shipped:
 
     python -m poly1305_aes.test
 
@@ -62,16 +61,16 @@ To run a simple benchmark:
 # INSTALLATION:
 Using pip:
 
-   pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
+    pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
 
-Using setup.py: 
+Using setup.py:
 
-   python setup.py install
+    python setup.py install
 
 # BUILD / INSTALL REQUIREMENTS:
-*GNU/Linux:* 
+*GNU/Linux:*
 - Python: Tested on 2.7.6, 3.4.3, pypy 2.7.10 (pypy 4.0.1)
-- cffi >= 1.0.0 
+- cffi >= 1.0.0
 - six - Python.h (libpython-dev on Debian-like systems)
 - gcc (build-essential on Debian-like systems)
 

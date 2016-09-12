@@ -94,25 +94,25 @@ from https://cr.yp.to/mac/poly1305aes-20050218.tar.gz.
 EXAMPLES:
 =========
 
-.. code:: python
+::
 
-        from poly1305_aes import (
-            get_key, authenticate, verify
-        )
-        msg = 'Hello world'
-        kr = get_key()
-        auth = authenticate(kr, msg)
+    from poly1305_aes import (
+        get_key, authenticate, verify
+    )
+    msg = 'Hello world'
+    kr = get_key()
+    auth = authenticate(kr, msg)
 
-        bad_kr = get_key()
-        bad_auth = authenticate(kr, msg + '1')
-        bad_msg = msg + '1'
+    bad_kr = get_key()
+    bad_auth = authenticate(kr, msg + '1')
+    bad_msg = msg + '1'
 
-        print('Good: %s\nBad auth: %s\nBad kr: %s\nBad msg: %s' % (
-            str(verify(auth, kr, msg)),
-            str(verify(bad_auth, kr, msg)),
-            str(verify(auth, bad_kr, msg)),
-            str(verify(auth, kr, bad_msg))
-        ))
+    print('Good: %s\nBad auth: %s\nBad kr: %s\nBad msg: %s' % (
+        str(verify(auth, kr, msg)),
+        str(verify(bad_auth, kr, msg)),
+        str(verify(auth, bad_kr, msg)),
+        str(verify(auth, kr, bad_msg))
+    ))
 
 Alternately, run the test script that is shipped:
 
@@ -131,11 +131,15 @@ INSTALLATION:
 
 Using pip:
 
-pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
+::
+
+    pip install 'git+https://github.com/sundarnagarajan/py_poly1305aes.git'
 
 Using setup.py:
 
-python setup.py install
+::
+
+    python setup.py install
 
 BUILD / INSTALL REQUIREMENTS:
 =============================
